@@ -182,7 +182,17 @@ button:hover {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.status-indicator.offline {
+    background: #ff4757;
+    box-shadow: 0 0 10px #ff4757;
+}
+
+.status-indicator.connecting {
+    background: #ffa502;
+    box-shadow: 0 0 10px #ffa502;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

@@ -5,12 +5,33 @@ const joinContainer = document.getElementById('join-container');
 const chatContainer = document.getElementById('chat-container');
 const nicknameInput = document.getElementById('nickname');
 const joinBtn = document.getElementById('join-btn');
+const statusIndicator = document.querySelector('.status-indicator');
 const messageArea = document.getElementById('message-area');
 const messageInput = document.getElementById('message-input');
 const sendBtn = document.getElementById('send-btn');
 const userBadge = document.getElementById('user-badge');
 
 let currentUser = '';
+
+// Connection Status handling
+socket.on('connect', () => {
+    statusIndicator.className = 'status-indicator'; // online
+    console.log('Connected to Galactic Hub');
+});
+
+socket.on('connecting', () => {
+    statusIndicator.className = 'status-indicator connecting';
+});
+
+socket.on('disconnect', () => {
+    statusIndicator.className = 'status-indicator offline';
+    console.log('Disconnected from Galactic Hub');
+});
+
+socket.on('connect_error', (error) => {
+    statusIndicator.className = 'status-indicator offline';
+    console.error('Connection Error:', error);
+});
 
 // Join Hub
 joinBtn.addEventListener('click', () => {
